@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration    PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"    "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动-->
+    <classPathEntry location="mysql-connector-java-5.1.40-bin.jar"/>
+    <!--内容 id随便取 targetRuntime分为MyBatis3和MyBatis3Simple，前者有xxByExample，后者没有 -->
+    <context id="test" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除生成代码自带时间戳  true：是 ： false:否 -->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/test?useSSL=true" userId="root" password="123456"></jdbcConnection>
+        <javaTypeResolver>
+            <!--  是否强制将DECIMAL与NUMERIC解析为BigDecimal-->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="com.test.Model.VO" targetProject="src">
+            <!-- 是否生成构造函数 默认：false-->
+            <property name="constructorBased" value="false" />
+            <!-- 是否生成子包(SubPackages) 默认：false-->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 生成的模型时候是不可变的（不可变->没有setter，只能通过构造函数接收参数）默认：false-->
+            <property name="immutable" value="false"/>
+            <!-- 是否是rootClass（具体不清楚）-->
+            <!--<property name="rootClass" value="false"/>-->
+            <!-- 默认：false-->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="com.test.Model.Dao.Mapping" targetProject="src">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置-->
+        <!-- javaClientGenerator type:-->
+        <!-- ANNOTATEDMAPPER:生成接口和注释，不会生成xml-->
+        <!-- MIXEDMAPPER:生成接口和注释还有xml-->
+        <!-- XMLMAPPER：生成接口和xml-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.test.Model.Dao.Interface" targetProject="src">
+            <!--是否生成子包-->
+            <property name="enableSubPackages" value="true"/>
+            <!--exampleMethod可见性 public/private/protected/default 默认:public-->
+            <property name="exampleMethodVisibility" value="public"/>
+            <!--methodNameCalculator 方法名字是否简写 是: ("insert", "updateByPrimaryKey", etc.) ("insertWidget", "updateWidgetByPrimaryKey", etc.) 默认：false-->
+            <property name="methodNameCalculator" value="false" />
+        </javaClientGenerator>
+        <!-- 要生成哪些表-->
+        <!--<table tableName="test" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><property name="domainObjectName" value="test" /></table>-->
+        <table tableName="test">
+            <!--domainObjectName 生成的类的名称 默认与表名相同-->
+            <!-- <property name="domainObjectName" value="test" /> -->
+            <!--enableCountByExample 是否生成CountByExample方法 默认:true-->
+            <property name="enableCountByExample" value="false" />
+            <!--enableUpdateByExample 是否生成UpdateByExample方法 默认:true-->
+            <property name="enableUpdateByExample" value="false" />
+            <!--enableDeleteByExample 是否生成DeleteByExample方法 默认:true-->
+            <property name="enableDeleteByExample" value="false" />
+            <!--enableSelectByExample 是否生成SelectByExample方法 默认:true-->
+            <property name="enableSelectByExample" value="false" />
+            <!--selectByExampleQueryId-->
+            <property name="selectByExampleQueryId" value="false" />
+        </table>
+    </context>
+</generatorConfiguration> 
